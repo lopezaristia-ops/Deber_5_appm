@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "auth-esfot",
-    "slug": "auth-esfot",
+    "name": "Boutique Aurora",
+    "slug": "boutique-aurora",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -19,7 +19,8 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.damarislopez.boutiqueaurora"
     },
     "web": {
       "output": "static",
@@ -44,6 +45,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "48fd58a2-39c4-4214-aa2f-8fe0ddd7d734"
+      }
+    },
+    "owner": "damarislopez"
   }
 }

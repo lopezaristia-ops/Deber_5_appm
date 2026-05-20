@@ -1,4 +1,5 @@
 import { View, Text, TextInput, StyleSheet } from "react-native";
+import { PASTEL } from "../../../constants/colors";
 
 interface InputProps {
   label:            string;
@@ -35,10 +36,10 @@ export const Input = ({
 
 const styles = StyleSheet.create({
   wrapper:    { gap:6 },
-  label:      { fontSize:14, fontWeight:"500", color:"#334155" },
-  input:      { borderWidth:1.5, borderColor:"#CBD5E1", borderRadius:10,
-                paddingHorizontal:16, paddingVertical:13, fontSize:15,
-                color:"#0F172A", backgroundColor:"#F8FAFC" },
-  inputError: { borderColor:"#DC2626" },
-  error:      { fontSize:12, color:"#DC2626" },
+  label:      { fontSize:14, fontWeight:"600", color:PASTEL.text },
+  input:      { borderWidth:1.5, borderColor:PASTEL.purple2, borderRadius:14,
+                paddingHorizontal:16, paddingVertical:14, fontSize:15,
+                color:PASTEL.text, backgroundColor:PASTEL.white },
+  inputError: { borderColor:PASTEL.pink1 },
+  error:      { fontSize:12, color:PASTEL.pink1 },
 });

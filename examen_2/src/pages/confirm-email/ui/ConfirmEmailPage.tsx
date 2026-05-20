@@ -5,6 +5,7 @@ import * as Linking from "expo-linking";
 import { Button } from "@/shared/ui/Button";
 import { router } from "expo-router";
 import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import { Ionicons } from '@expo/vector-icons';
 
 const parseConfirmationToken = (url: string): {
   accessToken: string | null;
@@ -157,7 +158,7 @@ export const ConfirmEmailPage = () => {
       
       {status === "success" && (
         <>
-          <Text style={styles.icon}>✅</Text>
+          <Ionicons name="checkmark-circle-outline" size={72} color={theme.colors.primary} style={styles.icon} />
           <Text style={styles.title}>¡Confirmado!</Text>
           <Text style={styles.message}>{message}</Text>
           <Button 
@@ -169,7 +170,7 @@ export const ConfirmEmailPage = () => {
       
       {status === "error" && (
         <>
-          <Text style={styles.icon}>❌</Text>
+          <Ionicons name="close-circle-outline" size={72} color={theme.colors.danger} style={styles.icon} />
           <Text style={styles.title}>Error</Text>
           <Text style={styles.message}>{message}</Text>
           <Button 
@@ -190,7 +191,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 24,
   },
-  icon: { fontSize: 72, marginBottom: 24 },
+  icon: { marginBottom: 24 },
   title: { fontSize: 26, fontWeight: "700", color: theme.colors.primary, marginBottom: 16 },
   message: { fontSize: 16, color: theme.colors.textMid, textAlign: "center", marginBottom: 32 },
 });

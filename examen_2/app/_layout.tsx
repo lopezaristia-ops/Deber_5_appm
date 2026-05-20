@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import { Stack, usePathname } from "expo-router";
-import { router } from "expo-router";
+import { Stack, usePathname, router } from "expo-router";
+import { TamaguiProvider } from 'tamagui';
+import { config } from '../tamagui.config';
 import { QueryProvider } from "@/core/providers/QueryProvider";
 import { useSession } from "@/features/session/model/useSession";
 
@@ -19,44 +20,43 @@ function AuthGuard() {
   const { isAuthenticated, isLoading } = useSession();
 
   const isPublicRoute = PUBLIC_ROUTES.some(route => pathname.includes(route));
-  const isHomeRoute = pathname === "/home" || pathname === "/";
+  const isRootRoute = pathname === "/";
 
   useEffect(() => {
     if (isLoading) return;
 
-    // Si ya está en home y está autenticado, no hacer nada
-    if (isHomeRoute && isAuthenticated) {
-      return;
-    }
-
-    // Si es ruta pública, no hacer nada
-    if (isPublicRoute) {
-      return;
-    }
-
-    // Redirigir según estado de autenticación
     if (isAuthenticated) {
-      router.replace("/home");
-    } else {
+      if (isRootRoute || isPublicRoute) {
+        router.replace("/home");
+      }
+      return;
+    }
+
+    if (!isPublicRoute) {
       router.replace("/(auth)/login");
     }
-  }, [isAuthenticated, isLoading, pathname, isPublicRoute, isHomeRoute]);
+  }, [isAuthenticated, isLoading, pathname, isPublicRoute, isRootRoute]);
 
   return null;
 }
 
 export default function RootLayout() {
   return (
-    <QueryProvider>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(auth)" />
-        <Stack.Screen name="home" />
-        <Stack.Screen name="reset-password" />
-        <Stack.Screen name="forgot-password" />
-        <Stack.Screen name="confirm-email" />
-        <Stack.Screen name="index" />
-      </Stack>
-      <AuthGuard />
-    </QueryProvider>
+    <TamaguiProvider config={config}>
+      <QueryProvider>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(auth)" />
+          <Stack.Screen name="home" />
+          <Stack.Screen name="reset-password" />
+          <Stack.Screen name="forgot-password" />
+          <Stack.Screen name="confirm-email" />
+          <Stack.Screen name="index" />
+          <Stack.Screen name="products" />
+          <Stack.Screen name="product-form" />
+          <Stack.Screen name="change-password" />
+        </Stack>
+        <AuthGuard />
+      </QueryProvider>
+    </TamaguiProvider>
   );
 }

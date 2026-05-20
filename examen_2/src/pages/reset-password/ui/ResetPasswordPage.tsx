@@ -5,6 +5,7 @@ import { Button } from "@/shared/ui/Button";
 import { Input } from "@/shared/ui/Input";
 import { router } from "expo-router";
 import { KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View, ActivityIndicator } from "react-native";
+import { Ionicons } from '@expo/vector-icons';
 
 export const ResetPasswordPage = () => {
   const [password, setPassword] = useState("");
@@ -52,8 +53,8 @@ export const ResetPasswordPage = () => {
     return (
       <View style={styles.container}>
         <View style={styles.inner}>
-          <Text style={styles.icon}>🔒</Text>
-          <Text style={styles.successTitle}>¡Contraseña actualizada!</Text>
+          <Ionicons name="lock-closed-outline" size={72} color={theme.colors.primary} style={styles.icon} />
+          <Text style={styles.successTitle}>Contraseña actualizada</Text>
           <Text style={styles.successText}>
             Tu contraseña ha sido cambiada exitosamente en la base de datos.
           </Text>
@@ -71,7 +72,7 @@ export const ResetPasswordPage = () => {
         <View style={styles.inner}>
           <View style={styles.card}>
             <View style={[styles.header, styles.headerError]}>
-              <Text style={styles.logo}>⚠️</Text>
+              <Ionicons name="warning-outline" size={44} color="#fff" style={styles.logoIcon} />
               <Text style={styles.title}>Enlace expirado</Text>
               <Text style={styles.subtitle}>El enlace de recuperación ya no es válido</Text>
             </View>
@@ -96,7 +97,7 @@ export const ResetPasswordPage = () => {
         </TouchableOpacity>
         <View style={styles.card}>
           <View style={styles.header}>
-            <Text style={styles.logo}>🔑</Text>
+            <Ionicons name="key-outline" size={44} color="#fff" style={styles.logoIcon} />
             <Text style={styles.title}>Nueva contraseña</Text>
             <Text style={styles.subtitle}>
               {hasToken
@@ -143,6 +144,7 @@ const styles = StyleSheet.create({
   header: { backgroundColor: theme.colors.primary, padding: 32, alignItems: "center" },
   headerError: { backgroundColor: theme.colors.danger },
   logo: { fontSize: 52, marginBottom: 12 },
+  logoIcon: { marginBottom: 12 },
   title: { color: "#fff", fontSize: 22, fontWeight: "700", textAlign: "center", marginBottom: 8 },
   subtitle: { color: "rgba(255,255,255,0.75)", fontSize: 13, textAlign: "center" },
   form: { padding: 28, gap: 16 },

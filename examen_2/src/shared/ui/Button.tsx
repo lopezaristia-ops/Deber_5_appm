@@ -1,4 +1,5 @@
 import { TouchableOpacity, Text, ActivityIndicator, StyleSheet } from "react-native";
+import { PASTEL } from "../../../constants/colors";
 
 interface ButtonProps {
   onPress:    () => void;
@@ -17,7 +18,8 @@ export const Button = ({
       onPress={onPress}
       disabled={isDisabled}
       style={[styles.base, styles[variant], isDisabled && styles.disabled]}
-      activeOpacity={0.8}
+      activeOpacity={0.85}
+      android_ripple={{ color: "#D1D5DB" }}
     >
       {isLoading
         ? <ActivityIndicator color="#fff" />
@@ -28,12 +30,12 @@ export const Button = ({
 };
 
 const styles = StyleSheet.create({
-  base:        { borderRadius:12, paddingVertical:14, paddingHorizontal:24,
+  base:        { borderRadius:14, paddingVertical:14, paddingHorizontal:24,
                  alignItems:"center", justifyContent:"center" },
-  primary:     { backgroundColor:"#1B3A6B" },
-  ghost:       { backgroundColor:"transparent", borderWidth:2, borderColor:"#1B3A6B" },
-  danger:      { backgroundColor:"#DC2626" },
+  primary:     { backgroundColor:PASTEL.purple1 },
+  ghost:       { backgroundColor:"transparent", borderWidth:2, borderColor:PASTEL.purple2 },
+  danger:      { backgroundColor:PASTEL.pink1 },
   disabled:    { opacity:0.5 },
-  label:       { color:"#fff", fontSize:16, fontWeight:"600" },
-  labelGhost:  { color:"#1B3A6B" },
+  label:       { color:"#fff", fontSize:16, fontWeight:"700" },
+  labelGhost:  { color:PASTEL.text },
 });
